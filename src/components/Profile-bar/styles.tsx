@@ -9,14 +9,15 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
     textAlign: "center",
+    top: "1%",
   },
   avatar: {
-    width: "100%",
-    height: 450,
+    width: "90%",
+    height: 400,
   },
   username: {
     fontSize: 35,
-    marginTop: 10,
+    marginTop: 7,
     marginBottom: 40,
   },
 });

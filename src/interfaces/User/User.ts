@@ -1,9 +1,11 @@
 /** @format */
 
 export default interface IUser {
+  email: string;
   username: string;
   avatar: string;
-  score: number;
-  online: boolean;
-  playing: boolean;
+  badges?: string[];
+  score?: number;
+  online?: boolean;
+  playing?: boolean;
 }

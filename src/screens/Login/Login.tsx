@@ -1,0 +1,88 @@
+import React, { useState } from "react";
+import {
+  Text,
+  TextInput,
+  Pressable,
+  Image,
+  SafeAreaView,
+  Alert,
+} from "react-native";
+import styles from "./styles";
+import pickImage from "../../utils/image/pick-image";
+import Icon from "react-native-vector-icons/FontAwesome";
+import login from "api/local-storage/login";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { NavigationParamList } from "components/Navbar/types";
+
+const LoginScreen = () => {
+  const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
+
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [image, setImage] = useState("");
+
+  async function handleImagePick() {
+    try {
+      const result = await pickImage();
+      if (result) {
+        setImage(result);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function handleLogin() {
+    try {
+      const result = await login({
+        email,
+        username,
+        avatar: image,
+      });
+
+      Alert.alert("Logged in", "You logged in successfully");
+      navigation.navigate("Home");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {image && <Image source={{ uri: image }} style={styles.avatar} />}
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        value={username}
+        onChangeText={setUsername}
+      />
+
+      <Pressable style={styles.button} onPress={handleImagePick}>
+        {image ? (
+          <>
+            <Icon name="upload" />
+            <Text>Change Icon</Text>
+          </>
+        ) : (
+          <>
+            <Icon name="upload" />
+            <Text>Upload Icon</Text>
+          </>
+        )}
+      </Pressable>
+      <Pressable style={styles.registerButton} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </Pressable>
+    </SafeAreaView>
+  );
+};
+
+export default LoginScreen;

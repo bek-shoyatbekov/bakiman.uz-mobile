@@ -3,6 +3,7 @@
 import { Image, Text, View } from "react-native";
 import { IProfileBar } from "./types";
 import styles from "./styles";
+import * as React from "react";
 
 export function ProfileBar(data: IProfileBar) {
   return (
