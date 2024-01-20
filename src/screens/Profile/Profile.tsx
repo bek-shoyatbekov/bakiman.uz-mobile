@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import IUser from "interfaces/User/User";
+import IUser from "Interfaces/User/User";
 import styles from "./styles";
 
 export function ProfileScreen({ navigation }: any) {

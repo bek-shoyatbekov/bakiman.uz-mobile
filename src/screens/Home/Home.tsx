@@ -1,77 +1,33 @@
 /** @format */
 
-import {
-  Pressable,
-  Text,
-  Animated,
-  Easing,
-  ScrollView,
-} from "react-native";
+import { Pressable, Text, SafeAreaView, TextInput, View } from "react-native";
 import styles from "./styles";
-import { HomeScreenProps } from "./types";
-import { useEffect, useRef } from "react";
 import * as React from "react";
-import checkUserAuthorization from "../../api/local-storage/check-user-authorization";
-import { ProfileBar } from "components/Profile-bar/Profile-Bar";
+import { ProfileBar } from "Components/Profile-bar/Profile-Bar";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { NavigationParamList } from "Components/Navbar/types";
 
-export default function Home({ navigation }: HomeScreenProps) {
-  const [isAuthorizedUser, setIsAuthorizedUser] = React.useState(false);
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    const checkAuthorization = async () => {
-      try {
-        const isAuthorizationUser = await checkUserAuthorization();
-        console.log(isAuthorizationUser);
-        setIsAuthorizedUser(isAuthorizationUser);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    checkAuthorization();
-
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 500,
-      easing: Easing.cubic,
-      useNativeDriver: true,
-    }).start();
-  }, []);
+export default function Home() {
+  const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
 
   return (
-    <>
-      <Animated.View
-        style={{
-          opacity: fadeAnim,
-        }}
-      >
-        <ScrollView style={styles.container}>
-          <ProfileBar username="Baki" />
-          {isAuthorizedUser ? (
-            <Pressable
-              onPress={() => navigation.navigate("Profile")}
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>Profile</Text>
-            </Pressable>
-          ) : (
-            <Pressable
-              onPress={() => navigation.navigate("Login")}
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>Login</Text>
-            </Pressable>
-          )}
-          <Pressable
-            onPress={() => navigation.navigate("Games")}
-            style={styles.button}
-          >
-            <Text style={styles.buttonText}>Games</Text>
-          </Pressable>
-        </ScrollView>
-      </Animated.View>
-      <Animated.View></Animated.View>
-    </>
+    <SafeAreaView style={styles.container}>
+      <ProfileBar username="Baki" />
+      <View style={styles.homeContainer}>
+        <TextInput placeholder="Enter Game id" style={styles.input}></TextInput>
+        <Pressable
+          onPress={() =>
+            navigation.navigate("Games", {
+              gameId: "33d",
+              userId: "33k",
+            })
+          }
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Games</Text>
+        </Pressable>
+      </View>
+    </SafeAreaView>
   );
 }

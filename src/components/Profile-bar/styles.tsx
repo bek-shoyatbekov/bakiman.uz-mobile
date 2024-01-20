@@ -6,19 +6,18 @@ const styles = StyleSheet.create({
   profileBar: {
     display: "flex",
     justifyContent: "center",
-    backgroundColor: "white",
     alignItems: "center",
-    textAlign: "center",
-    top: "1%",
+    width: "100%",
+    bottom: "15%",
   },
   avatar: {
-    width: "90%",
-    height: 400,
+    top: "-2%",
+    width: "60%",
+    height: "60%",
   },
   username: {
+    display: "flex",
     fontSize: 35,
-    marginTop: 7,
-    marginBottom: 40,
   },
 });
 

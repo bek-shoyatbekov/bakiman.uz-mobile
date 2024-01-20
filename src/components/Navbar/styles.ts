@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   navbar: {
-    position: "absolute", // Changed from 'relative'
+    position: "absolute",
     left: 0,
     right: 0,
     bottom: 0,
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
+  icon: { color: "white", fontSize: 25 },
 });
 
 export default styles;

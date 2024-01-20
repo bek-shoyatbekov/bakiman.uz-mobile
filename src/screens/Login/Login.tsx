@@ -8,12 +8,12 @@ import {
   Alert,
 } from "react-native";
 import styles from "./styles";
-import pickImage from "../../utils/image/pick-image";
+import pickImage from "../../Utils/image/pick-image";
 import Icon from "react-native-vector-icons/FontAwesome";
-import login from "api/local-storage/login";
+import login from "Api/local-storage/login";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { NavigationParamList } from "components/Navbar/types";
+import { NavigationParamList } from "Components/Navbar/types";
 
 const LoginScreen = () => {
   const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();

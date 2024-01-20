@@ -1,65 +1,78 @@
-import { Pressable, Text, View } from "react-native";
-import * as React from "react";
-import styles from "./styles";
+import { Pressable, SafeAreaView, Text } from "react-native";
+import React, { useState } from "react";
+import IconA from "react-native-vector-icons/AntDesign";
+import IconF from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+
+import styles from "./styles";
 import { NavigationParamList } from "./types";
-import checkUserAuthorization from "api/local-storage/check-user-authorization";
+import checkUserAuthorization from "Api/local-storage/check-user-authorization";
+import IUser from "Interfaces/User/User";
 
 export default function Navbar() {
   const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
 
-  const [isLogin, setIsLogin] = React.useState<boolean>(false);
+  const [user, setUser] = useState<IUser>();
 
-  React.useEffect(() => {
+  useState(() => {
     const getUser = async () => {
       const userData = await checkUserAuthorization();
       if (userData) {
-        setIsLogin(true);
+        setUser(userData as IUser);
       }
     };
     getUser();
-  }, [isLogin]);
+  });
+
+  async function handleNavigationChange(location: string) {
+    if (!user) {
+      const result = await checkUserAuthorization();
+      if (result) {
+        setUser(result as IUser);
+      }
+    }
+    navigation.navigate(location, {
+      avatar: user?.avatar,
+      username: user?.username,
+    });
+  }
 
   return (
-    <View style={styles.navbar}>
+    <SafeAreaView style={styles.navbar}>
       <Pressable
         style={styles.navItem}
-        onPress={() => {
-          navigation.navigate("Home");
-        }}
+        onPress={async () => await handleNavigationChange("Home")}
       >
+        <IconF name="home" style={styles.icon} />
         <Text style={styles.navText}>Home</Text>
       </Pressable>
 
       <Pressable
         style={styles.navItem}
-        onPress={() => {
-          navigation.navigate("Games");
-        }}
+        onPress={async () => await handleNavigationChange("Games")}
       >
+        <IconF name="gamepad" style={styles.icon} />
         <Text style={styles.navText}>Games</Text>
       </Pressable>
 
-      {isLogin ? (
+      {user ? (
         <Pressable
           style={styles.navItem}
-          onPress={() => {
-            navigation.navigate("Profile");
-          }}
+          onPress={async () => await handleNavigationChange("Profile")}
         >
+          <IconA name="user" style={styles.icon} />
           <Text style={styles.navText}>Profile</Text>
         </Pressable>
       ) : (
         <Pressable
           style={styles.navItem}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
+          onPress={async () => await handleNavigationChange("Login")}
         >
+          <IconA name="login" style={styles.icon} />
           <Text style={styles.navText}>Login</Text>
         </Pressable>
       )}
-    </View>
+    </SafeAreaView>
   );
 }

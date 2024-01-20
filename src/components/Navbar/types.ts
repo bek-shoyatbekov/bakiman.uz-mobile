@@ -3,6 +3,13 @@ export type NavigationParamList = {
 };
 
 export interface INavbarOptions {
-  userId: string;
-  isOwner: boolean;
+  userId?: string;
+  username?: string;
+  avatar?: string;
+  isOwner?: boolean;
+  gameId?: string;
 }
+
+export type IsLoggedType = {
+  isLogged: boolean;
+};

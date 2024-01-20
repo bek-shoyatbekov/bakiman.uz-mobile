@@ -4,11 +4,18 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    marginTop: "-20%",
-    overflow: "hidden",
-    bottom: "6%",
-    textAlign: "center",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+  },
+  homeContainer: {
+    flex: 1,
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    top: "-30%",
   },
   button: {
     backgroundColor: "#1E90FF",
@@ -26,29 +33,14 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     textAlign: "center",
   },
-
-  navbar: {
-    position: "absolute", // Changed from 'relative'
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: 60,
-    backgroundColor: "blue",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    borderTopWidth: 1,
-    borderTopColor: "#ddd",
-  },
-
-  navItem: {
-    flex: 1,
-    display: "flex",
-  },
-
-  navText: {
-    color: "white",
+  input: {
+    width: "80%",
     textAlign: "center",
+    padding: 13,
+    backgroundColor: "#ffff",
+    marginBottom: 12,
+    borderWidth: 1,
+    borderRadius: 5,
   },
 });
 

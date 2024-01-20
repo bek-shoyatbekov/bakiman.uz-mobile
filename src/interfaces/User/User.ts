@@ -1,7 +1,7 @@
 /** @format */
 
 export default interface IUser {
-  email: string;
+  email?: string;
   username: string;
   avatar: string;
   badges?: string[];

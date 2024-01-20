@@ -1,5 +1,5 @@
-import Storage from "async-storage";
-import IUser from "interfaces/User/User";
+import Storage from "Async-storage";
+import IUser from "Interfaces/User/User";
 
 export default async function login(user: IUser) {
   try {

@@ -1,11 +1,15 @@
-import Storage from "async-storage";
+import Storage from "Async-storage";
+import IUser from "Interfaces/User/User";
 
-export default async function checkUserAuthorization() {
+export default async function checkUserAuthorization(): Promise<
+  IUser | boolean
+> {
   try {
     const result = await Storage.getItem("user");
 
     if (result !== null) {
-      return true;
+      console.log("Getting user result", result);
+      return JSON.parse(result) as IUser;
     }
     return false;
   } catch (err) {
