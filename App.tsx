@@ -9,7 +9,6 @@ import { ProfileScreen } from "./src/Screens/Profile/Profile";
 import { GamesScreen } from "./src/Screens/Games/Games";
 import LoginScreen from "./src/Screens/Login/Login";
 import Navbar from "Components/Navbar/Navbar";
-import checkUserAuthorization from "Api/local-storage/check-user-authorization";
 import { UserContext } from "Contexts/UserContext";
 
 const Stack = createNativeStackNavigator();
@@ -17,9 +16,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [isLogged, setIsLogged] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-  
-  });
+  React.useEffect(() => {});
   return (
     <UserContext.Provider value={isLogged}>
       <NavigationContainer>
@@ -27,23 +24,19 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{ title: "Home" }}
-          ></Stack.Screen>
+            options={{ title: "Home" }}></Stack.Screen>
           <Stack.Screen
             name="Games"
             component={GamesScreen}
-            options={{ title: "Games" }}
-          ></Stack.Screen>
+            options={{ title: "Games" }}></Stack.Screen>
           <Stack.Screen
             name="Login"
             component={LoginScreen}
-            options={{ title: "Login" }}
-          ></Stack.Screen>
+            options={{ title: "Login" }}></Stack.Screen>
           <Stack.Screen
             name="Profile"
             component={ProfileScreen}
-            options={{ title: "Your profile" }}
-          ></Stack.Screen>
+            options={{ title: "Your profile" }}></Stack.Screen>
         </Stack.Navigator>
         <Navbar />
       </NavigationContainer>

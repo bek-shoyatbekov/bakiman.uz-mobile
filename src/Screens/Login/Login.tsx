@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import {
   Text,
@@ -7,12 +9,13 @@ import {
   SafeAreaView,
   Alert,
 } from "react-native";
-import styles from "./styles";
-import pickImage from "../../Utils/image/pick-image";
 import Icon from "react-native-vector-icons/FontAwesome";
-import login from "Api/local-storage/login";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+
+import pickImage from "../../Utils/image/pick-image";
+import styles from "./styles";
+import login from "Api/local-storage/login";
 import { NavigationParamList } from "Components/Navbar/types";
 
 const LoginScreen = () => {
