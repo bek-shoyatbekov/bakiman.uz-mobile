@@ -17,6 +17,8 @@ import pickImage from "../../Utils/image/pick-image";
 import styles from "./styles";
 import login from "Api/local-storage/login";
 import { NavigationParamList } from "Components/Navbar/types";
+import IUser from "Interfaces/User/User";
+import { UserEvents } from "Events/User";
 
 const LoginScreen = () => {
   const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
@@ -42,9 +44,10 @@ const LoginScreen = () => {
         email,
         username,
         avatar: image,
-      });
+      } as IUser);
 
       Alert.alert("Logged in", "You logged in successfully");
+      UserEvents.emit("LOGIN_SUCCESSFUL", result);
       navigation.navigate("Home");
     } catch (err) {
       console.log(err);

@@ -13,17 +13,18 @@ import {
 import IUser from "Interfaces/User/User";
 import styles from "./styles";
 import Storage from "Async-storage";
+import { UserEvents } from "Events/User";
 
 export function ProfileScreen({ navigation }: any) {
   const [user, setUser] = React.useState<IUser>();
   const [changed, setChanged] = React.useState<boolean>(false);
   const [username, setUsername] = React.useState("");
 
-  function saveChanges() {
+  async function saveChanges() {
     if (changed) {
-      Storage.setItem(
+      await Storage.setItem(
         "user",
-        JSON.stringify({ username, avatar: user?.avatar })
+        JSON.stringify({ username, avatar: user?.avatar } as IUser)
       );
       setChanged(false);
     }
@@ -44,6 +45,7 @@ export function ProfileScreen({ navigation }: any) {
 
   const handleLogout = async () => {
     await Storage.removeItem("user");
+    UserEvents.emit("logout", { userId: user?.id });
     navigation.navigate("Home");
   };
   return (
