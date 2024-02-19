@@ -48,7 +48,10 @@ const styles = StyleSheet.create({
   cardImage: {
     flex: 1,
     height: 150,
-    width: null,
+    width: "100%",
+    borderRadius: 5,
+    overflow: "hidden",
+    marginBottom: 5,
   },
   /******** card components **************/
   title: {

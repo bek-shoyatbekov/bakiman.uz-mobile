@@ -3,9 +3,9 @@
 import * as React from "react";
 import { FlatList, View } from "react-native";
 
-import { GameCard } from "Components/GameCard/Game-Card";
+import { GameCard } from "../../Components/GameCard/Game-Card";
 import styles from "./styles";
-import games from "./fake-data";
+import games from "./game-data";
 
 export function GamesScreen() {
   return (
@@ -13,7 +13,7 @@ export function GamesScreen() {
       <FlatList
         style={styles.list}
         data={games}
-        keyExtractor={(item, index) => item.id.toString()}
+        keyExtractor={(item, _) => item.id.toString()}
         ItemSeparatorComponent={() => {
           return <View style={styles.separator} />;
         }}

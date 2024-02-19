@@ -1,5 +1,5 @@
 export interface IGame {
-  id: number;
+  id: string;
   title: string;
   image: string;
 }

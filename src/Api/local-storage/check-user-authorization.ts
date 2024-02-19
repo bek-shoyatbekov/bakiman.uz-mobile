@@ -5,6 +5,7 @@ export default async function checkUserAuthorization(): Promise<
   IUser | boolean
 > {
   try {
+    console.log("User authorization is being checked...");
     const result = await Storage.getItem("user");
 
     if (result !== null) {

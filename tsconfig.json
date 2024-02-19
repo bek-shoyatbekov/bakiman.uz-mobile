@@ -4,6 +4,10 @@
     "esModuleInterop": true,
     "jsx": "react",
     "baseUrl": ".",
+    "typeRoots": ["node_modules/@types"],
+    "pretty": true,
+    "strict": true,
+    "types": ["node"],
     "paths": {
       "*": ["src/*"],
       "tests": ["tests/*"],

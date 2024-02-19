@@ -9,18 +9,29 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import IUser from "Interfaces/User/User";
 import styles from "./styles";
+import Storage from "Async-storage";
 
 export function ProfileScreen({ navigation }: any) {
   const [user, setUser] = React.useState<IUser>();
   const [changed, setChanged] = React.useState<boolean>(false);
   const [username, setUsername] = React.useState("");
 
+  function saveChanges() {
+    if (changed) {
+      Storage.setItem(
+        "user",
+        JSON.stringify({ username, avatar: user?.avatar })
+      );
+      setChanged(false);
+    }
+  }
+
   React.useState(() => {
     const getUser = async () => {
-      const userData = await AsyncStorage.getItem("user");
+      const userData = await Storage.getItem("user");
       if (userData) {
         const parsedUser = JSON.parse(userData);
 
@@ -32,7 +43,7 @@ export function ProfileScreen({ navigation }: any) {
   });
 
   const handleLogout = async () => {
-    await AsyncStorage.removeItem("user");
+    await Storage.removeItem("user");
     navigation.navigate("Home");
   };
   return (
@@ -47,7 +58,12 @@ export function ProfileScreen({ navigation }: any) {
               }}
             />
           </Pressable>
-          <TextInput style={styles.name}>{user?.username}</TextInput>
+          <TextInput
+            style={styles.name}
+            onChangeText={(username) => setChanged(true)}
+          >
+            {user?.username}
+          </TextInput>
         </View>
       </View>
 
@@ -68,10 +84,19 @@ export function ProfileScreen({ navigation }: any) {
 
       <View style={styles.body}>
         <View style={styles.bodyContent}>
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={saveChanges}
+          >
             <Text style={styles.buttonText}>
               {changed ? "Save" : "No change"}
             </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={handleLogout}
+          >
+            <Text style={styles.buttonText}>Logout</Text>
           </TouchableOpacity>
         </View>
       </View>
