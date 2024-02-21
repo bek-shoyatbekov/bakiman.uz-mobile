@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ProfileBar } from "Components/Profile-bar/Profile-Bar";
 import { NavigationParamList } from "Components/Navbar/types";
 import styles from "./styles";
+import Navbar from "Components/Navbar/Navbar";
 
 export default function Home() {
   const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
@@ -20,27 +21,30 @@ export default function Home() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ProfileBar username="Baki" />
-      <View style={styles.homeContainer}>
-        <TextInput
-          placeholder="Enter Game id"
-          style={styles.input}
-          onChangeText={handleGameIdChange}
-          value={gameId}
-        ></TextInput>
-        <Pressable
-          onPress={() =>
-            navigation.navigate("Game", {
-              gameId,
-              userId,
-            })
-          }
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Play</Text>
-        </Pressable>
-      </View>
-    </SafeAreaView>
+    <>
+      <SafeAreaView style={styles.container}>
+        <ProfileBar username="Baki" />
+        <View style={styles.homeContainer}>
+          <TextInput
+            placeholder="Enter Game id"
+            style={styles.input}
+            onChangeText={handleGameIdChange}
+            value={gameId}
+          ></TextInput>
+          <Pressable
+            onPress={() =>
+              navigation.navigate("Game", {
+                gameId,
+                userId,
+              })
+            }
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Play</Text>
+          </Pressable>
+        </View>
+      </SafeAreaView>
+      <Navbar />
+    </>
   );
 }

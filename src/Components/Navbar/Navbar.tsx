@@ -7,7 +7,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 import styles from "./styles";
 import { NavigationParamList } from "./types";
-import checkUserAuthorization from "Api/local-storage/check-user-authorization";
+import checkUserAuthorization from "Api/user/check-user-authorization";
 import IUser from "Interfaces/User/User";
 import { UserEvents } from "Events/User";
 

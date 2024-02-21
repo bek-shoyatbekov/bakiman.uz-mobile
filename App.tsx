@@ -8,7 +8,7 @@ import HomeScreen from "./src/Screens/Home/Home";
 import { ProfileScreen } from "./src/Screens/Profile/Profile";
 import { GamesScreen } from "./src/Screens/Games/GamesScreen";
 import LoginScreen from "./src/Screens/Login/Login";
-import Navbar from "Components/Navbar/Navbar";
+
 import { GameScreen } from "Screens/Games/Game";
 
 const Stack = createNativeStackNavigator();
@@ -43,7 +43,6 @@ export default function App() {
           options={{ title: "Your profile" }}
         ></Stack.Screen>
       </Stack.Navigator>
-      <Navbar />
     </NavigationContainer>
   );
 }

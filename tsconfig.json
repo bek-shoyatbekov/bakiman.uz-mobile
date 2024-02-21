@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "baseUrl": ".",
+    "isolatedModules": false,
     "typeRoots": ["node_modules/@types"],
     "pretty": true,
     "strict": true,

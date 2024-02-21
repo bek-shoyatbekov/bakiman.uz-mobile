@@ -15,10 +15,11 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 import pickImage from "../../Utils/image/pick-image";
 import styles from "./styles";
-import login from "Api/local-storage/login";
+import login from "Api/user/login";
 import { NavigationParamList } from "Components/Navbar/types";
 import IUser from "Interfaces/User/User";
 import { UserEvents } from "Events/User";
+import Navbar from "Components/Navbar/Navbar";
 
 const LoginScreen = () => {
   const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
@@ -55,39 +56,42 @@ const LoginScreen = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      {image && <Image source={{ uri: image }} style={styles.avatar} />}
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-      />
+    <>
+      <SafeAreaView style={styles.container}>
+        {image && <Image source={{ uri: image }} style={styles.avatar} />}
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+        />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
-      />
+        <TextInput
+          style={styles.input}
+          placeholder="Username"
+          value={username}
+          onChangeText={setUsername}
+        />
 
-      <Pressable style={styles.button} onPress={handleImagePick}>
-        {image ? (
-          <>
-            <Icon name="upload" />
-            <Text>Change Icon</Text>
-          </>
-        ) : (
-          <>
-            <Icon name="upload" />
-            <Text>Upload Icon</Text>
-          </>
-        )}
-      </Pressable>
-      <Pressable style={styles.registerButton} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
-      </Pressable>
-    </SafeAreaView>
+        <Pressable style={styles.button} onPress={handleImagePick}>
+          {image ? (
+            <>
+              <Icon name="upload" />
+              <Text>Change Icon</Text>
+            </>
+          ) : (
+            <>
+              <Icon name="upload" />
+              <Text>Upload Icon</Text>
+            </>
+          )}
+        </Pressable>
+        <Pressable style={styles.registerButton} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Login</Text>
+        </Pressable>
+      </SafeAreaView>
+      <Navbar />
+    </>
   );
 };
 
