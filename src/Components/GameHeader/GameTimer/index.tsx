@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useEffect, useRef } from "react";
 import { SafeAreaView, Text } from "react-native";
 import LottieView from "lottie-react-native";
@@ -37,8 +39,7 @@ const GameTimer = () => {
         source={{
           uri: "https://lottie.host/c9696f90-45e0-4a20-908f-806ff3e1bff8/vRmmMKW3eo.json",
         }}
-        renderMode="SOFTWARE"
-      ></LottieView>
+        renderMode="SOFTWARE"></LottieView>
       <Text style={styles.time}>{time}</Text>
     </SafeAreaView>
   );

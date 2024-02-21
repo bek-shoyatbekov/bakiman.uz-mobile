@@ -1,13 +1,14 @@
+/** @format */
+
 import React, { useState, useRef } from "react";
 import {
   View,
   TextInput,
-  Button,
   FlatList,
   Text,
   TouchableOpacity,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
+
 import styles from "./styles";
 
 interface Emoji {
@@ -42,18 +43,11 @@ const ChatBar: React.FC = ({ onSend }: any) => {
     setIsEmojiMenuOpen(false);
   };
 
-  const toggleEmojiMenu = () => {
-    setIsEmojiMenuOpen(!isEmojiMenuOpen);
-  };
-
-  const renderEmojiItem = ({ item }: { item: Emoji }) => (
-    <TouchableOpacity onPress={() => handleEmojiPress(item)}>
-      <Text style={{ fontSize: 24, marginHorizontal: 10 }}>{item.icon}</Text>
-    </TouchableOpacity>
-  );
-
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.exitBtn}>
+        <Text style={styles.exitBtnText}>Exit</Text>
+      </TouchableOpacity>
       <TextInput
         value={message}
         onChangeText={setMessage}
@@ -61,20 +55,9 @@ const ChatBar: React.FC = ({ onSend }: any) => {
         placeholder="Type your message..."
         multiline={false}
       />
-      <Button title="Send" onPress={handleSend} />
-      <TouchableOpacity style={styles.emojiButton} onPress={toggleEmojiMenu}>
-        <Feather name="smile" size={24} color="black" />
+      <TouchableOpacity style={styles.sendBtn} onPress={handleSend}>
+        <Text style={styles.sendBtnText}>Send</Text>
       </TouchableOpacity>
-      {isEmojiMenuOpen && (
-        <FlatList
-          ref={emojiMenuRef}
-          data={emojis}
-          renderItem={renderEmojiItem}
-          keyExtractor={(item) => item.name}
-          horizontal={true}
-          style={styles.emojiMenu}
-        />
-      )}
     </View>
   );
 };

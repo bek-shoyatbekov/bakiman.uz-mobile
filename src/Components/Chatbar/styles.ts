@@ -1,19 +1,21 @@
+/** @format */
+
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    marginTop: "auto",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    marginTop: "auto",
     padding: 8,
     backgroundColor: "#f2f2f2",
-    bottom: 0,
   },
   input: {
     flex: 1,
     marginRight: 8,
+    marginLeft: 8,
     padding: 8,
     borderRadius: 4,
     backgroundColor: "#fff",
@@ -33,6 +35,28 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+  },
+  sendBtn: {
+    backgroundColor: "#1E90FF",
+    padding: 11.8,
+    color: "white",
+    borderRadius: 4,
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 16,
+  },
+  sendBtnText: {
+    color: "white",
+  },
+  exitBtn: {
+    backgroundColor: "#1E90FF",
+    padding: 11.8,
+    color: "white",
+    borderRadius: 4,
+    fontSize: 16,
+  },
+  exitBtnText: {
+    color: "white",
   },
 });
 

@@ -9,7 +9,9 @@ const styles = StyleSheet.create({
   image: {
     width: 80,
     height: 80,
-    borderRadius: 30,
+    borderRadius: 35,
+    borderColor: "white",
+    borderWidth: 2,
   },
   username: {
     fontWeight: "bold",
