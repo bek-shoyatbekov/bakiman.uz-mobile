@@ -81,17 +81,18 @@ export function ProfileScreen({ navigation }: any) {
 
         <View style={styles.profileDetail}>
           <View style={styles.detailContent}>
-            <Text style={styles.title}>
-              <FontAwesome name="arrow-circle-o-up" size={24} color="blue" />{" "}
-              Win
-            </Text>
+            <FontAwesome name="star" size={24} color="#1E90FF" />
+            <Text style={styles.title}>Points</Text>
             <Text style={styles.count}>200</Text>
           </View>
           <View style={styles.detailContent}>
-            <Text style={styles.title}>
-              <FontAwesome name="arrow-circle-o-down" size={24} color="blue" />{" "}
-              Lose
-            </Text>
+            <FontAwesome name="globe" size={24} color="#1E90FF" />
+            <Text style={styles.title}>Global rank</Text>
+            <Text style={styles.count}>200</Text>
+          </View>
+          <View style={styles.detailContent}>
+            <FontAwesome name="map-marker" size={24} color="#1E90FF" />
+            <Text style={styles.title}>Local rank</Text>
             <Text style={styles.count}>200</Text>
           </View>
         </View>

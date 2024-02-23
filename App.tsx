@@ -17,31 +17,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home" screenOptions={{}}>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: "Home" }}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="Games"
-          component={GamesScreen}
-          options={{ title: "Games" }}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="Game"
-          component={GameScreen}
-          options={{ title: "Game" }}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ title: "Login" }}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={{ title: "Your profile" }}
-        ></Stack.Screen>
+        <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
+        <Stack.Screen name="Games" component={GamesScreen}></Stack.Screen>
+        <Stack.Screen name="Game" component={GameScreen}></Stack.Screen>
+        <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+        <Stack.Screen name="Profile" component={ProfileScreen}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
