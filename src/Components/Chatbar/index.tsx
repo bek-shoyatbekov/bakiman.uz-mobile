@@ -10,6 +10,9 @@ import {
 } from "react-native";
 
 import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { NavigationParamList } from "Components/Navbar/types";
 
 interface Emoji {
   name: string;
@@ -30,6 +33,8 @@ const ChatBar: React.FC = ({ onSend }: any) => {
   const [isEmojiMenuOpen, setIsEmojiMenuOpen] = useState(false);
   const emojiMenuRef = useRef<FlatList>(null);
 
+  const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
+
   const handleSend = () => {
     if (!message) {
       return;
@@ -43,9 +48,13 @@ const ChatBar: React.FC = ({ onSend }: any) => {
     setIsEmojiMenuOpen(false);
   };
 
+  const handleExitBtn = () => {
+    navigation.navigate("Home");
+  };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.exitBtn}>
+      <TouchableOpacity style={styles.exitBtn} onPress={handleExitBtn}>
         <Text style={styles.exitBtnText}>Exit</Text>
       </TouchableOpacity>
       <TextInput

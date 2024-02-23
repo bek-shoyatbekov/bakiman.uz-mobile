@@ -4,16 +4,17 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   profileBar: {
+    position: "absolute",
+    top: 0,
+    border: "3px solid",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    bottom: "15%",
   },
   avatar: {
-    top: "-2%",
-    width: "60%",
-    height: "60%",
+    width: 200,
+    height: 200,
   },
   username: {
     display: "flex",

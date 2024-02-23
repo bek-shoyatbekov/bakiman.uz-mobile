@@ -15,32 +15,32 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    top: "-30%",
   },
+
   button: {
     backgroundColor: "#1E90FF",
     paddingBottom: "4%",
     textAlign: "center",
-    paddingTop: "4%",
+    paddingTop: "2%",
     marginBottom: "2%",
-    borderRadius: 50,
-    width: "90%",
-    marginLeft: "5%",
+    borderRadius: 70,
+    width: "80%",
   },
+
   buttonText: {
     color: "#dfdfdf",
     fontSize: 18,
     fontWeight: "500",
     textAlign: "center",
   },
+
   input: {
     width: "80%",
     textAlign: "center",
-    padding: 13,
+    padding: "2%",
     backgroundColor: "#ffff",
     marginBottom: 12,
-    borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 70,
   },
 });
 

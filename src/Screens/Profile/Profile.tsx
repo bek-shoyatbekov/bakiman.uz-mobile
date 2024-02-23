@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 import IUser from "Interfaces/User/User";
 import styles from "./styles";
@@ -54,6 +55,9 @@ export function ProfileScreen({ navigation }: any) {
     <>
       <View style={styles.container}>
         <View style={styles.header}>
+          <TouchableOpacity style={styles.notification}>
+            <Ionicons name="ios-notifications" size={28} color="#fff" />
+          </TouchableOpacity>
           <View style={styles.headerContent}>
             <Pressable>
               <Image
@@ -77,15 +81,17 @@ export function ProfileScreen({ navigation }: any) {
 
         <View style={styles.profileDetail}>
           <View style={styles.detailContent}>
-            <Text style={styles.title}>Scores</Text>
+            <Text style={styles.title}>
+              <FontAwesome name="arrow-circle-o-up" size={24} color="blue" />{" "}
+              Win
+            </Text>
             <Text style={styles.count}>200</Text>
           </View>
           <View style={styles.detailContent}>
-            <Text style={styles.title}>Victories</Text>
-            <Text style={styles.count}>200</Text>
-          </View>
-          <View style={styles.detailContent}>
-            <Text style={styles.title}>Lose</Text>
+            <Text style={styles.title}>
+              <FontAwesome name="arrow-circle-o-down" size={24} color="blue" />{" "}
+              Lose
+            </Text>
             <Text style={styles.count}>200</Text>
           </View>
         </View>

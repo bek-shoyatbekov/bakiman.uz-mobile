@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import HomeScreen from "./src/Screens/Home/Home";
 import { ProfileScreen } from "./src/Screens/Profile/Profile";
-import { GamesScreen } from "./src/Screens/Games/GamesScreen";
+import { GamesScreen } from "./src/Screens/Games/Games";
 import LoginScreen from "./src/Screens/Login/Login";
 
 import { GameScreen } from "Screens/Games/Game";

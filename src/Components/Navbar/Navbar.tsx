@@ -1,7 +1,6 @@
 import { Pressable, SafeAreaView, Text } from "react-native";
 import React, { useState } from "react";
-import IconA from "react-native-vector-icons/AntDesign";
-import IconF from "react-native-vector-icons/FontAwesome";
+import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -53,7 +52,7 @@ export default function Navbar() {
         style={styles.navItem}
         onPress={async () => await handleNavigationChange("Home")}
       >
-        <IconF name="home" style={styles.icon} />
+        <FontAwesome name="home" style={styles.icon} />
         <Text style={styles.navText}>Home</Text>
       </Pressable>
 
@@ -61,7 +60,7 @@ export default function Navbar() {
         style={styles.navItem}
         onPress={async () => await handleNavigationChange("Games")}
       >
-        <IconF name="gamepad" style={styles.icon} />
+        <FontAwesome name="gamepad" style={styles.icon} />
         <Text style={styles.navText}>Games</Text>
       </Pressable>
 
@@ -70,7 +69,7 @@ export default function Navbar() {
           style={styles.navItem}
           onPress={async () => await handleNavigationChange("Profile")}
         >
-          <IconA name="user" style={styles.icon} />
+          <FontAwesome name="user" style={styles.icon} />
           <Text style={styles.navText}>Profile</Text>
         </Pressable>
       ) : (
@@ -78,7 +77,7 @@ export default function Navbar() {
           style={styles.navItem}
           onPress={async () => await handleNavigationChange("Login")}
         >
-          <IconA name="login" style={styles.icon} />
+          <FontAwesome name="sign-in" style={styles.icon} />
           <Text style={styles.navText}>Login</Text>
         </Pressable>
       )}

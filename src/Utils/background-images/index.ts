@@ -24,5 +24,4 @@ const getRandomBackgroundImage = () => {
   return `https://drive.google.com/thumbnail?id=${GoogleDriveIds[randomNumber]}`;
 };
 
-
 export default getRandomBackgroundImage;

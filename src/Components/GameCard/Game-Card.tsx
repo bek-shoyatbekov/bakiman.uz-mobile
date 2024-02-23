@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 
 import styles from "./styles";
 import { IGame } from "Interfaces/GameCard/Game";
@@ -27,30 +28,19 @@ export const GameCard = (game: IGame) => {
         <View style={styles.socialBarContainer}>
           <View style={styles.socialBarSection}>
             <TouchableOpacity style={styles.socialBarButton}>
-              <Image
-                style={styles.icon}
-                source={require("../../../assets/like-icon.png")}
-              />
+              <FontAwesome name="heart" color={"#1E90FF"} size={20} />
               <Text style={styles.socialBarlabel}>78</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.socialBarSection}>
             <TouchableOpacity style={styles.socialBarButton}>
-              <Image
-                style={styles.icon}
-                source={require("../../../assets/play-games-icon.png")}
-              />
+              <FontAwesome name="play-circle" color={"#1E90FF"} size={23} />
               <Text style={styles.socialBarlabel}>25</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.socialBarSection}>
             <TouchableOpacity style={styles.socialBarButton}>
-              <Image
-                style={styles.icon}
-                source={{
-                  uri: "https://img.icons8.com/color/70/000000/share.png",
-                }}
-              />
+              <FontAwesome name="share" color={"#1E90FF"} size={20} />
               <Text style={styles.socialBarlabel}>13</Text>
             </TouchableOpacity>
           </View>

@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    position: "relative",
     backgroundColor: "#1E90FF",
   },
 
@@ -10,9 +11,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#1E90FF",
   },
   headerContent: {
-    padding: 30,
+    padding: 33,
     alignItems: "center",
   },
+
   avatar: {
     width: 130,
     height: 130,
@@ -21,23 +23,28 @@ const styles = StyleSheet.create({
     borderColor: "white",
     marginBottom: 10,
   },
+  notification: {
+    position: "absolute",
+    top: 15,
+    right: 15,
+  },
   name: {
     fontSize: 22,
     color: "#FFFFFF",
     fontWeight: "600",
   },
   profileDetail: {
-    borderTopStartRadius: 10,
-    borderTopEndRadius: 10,
     alignSelf: "center",
-    marginTop: 200,
+    borderRadius: 5,
+    paddingHorizontal: 20,
+    marginTop: 210,
     alignItems: "center",
     flexDirection: "row",
     position: "absolute",
     backgroundColor: "#ffffff",
   },
   detailContent: {
-    margin: 10,
+    margin: 3,
     alignItems: "center",
   },
   title: {

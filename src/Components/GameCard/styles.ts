@@ -27,8 +27,6 @@ const styles = StyleSheet.create({
   cardHeader: {
     paddingVertical: 17,
     paddingHorizontal: 16,
-    borderTopLeftRadius: 1,
-    borderTopRightRadius: 1,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -49,7 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 150,
     width: "100%",
-    borderRadius: 5,
+    borderRadius: 2,
     overflow: "hidden",
     marginBottom: 5,
   },

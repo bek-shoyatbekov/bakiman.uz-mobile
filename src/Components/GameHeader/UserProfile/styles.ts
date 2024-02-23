@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   image: {
     width: 80,
     height: 80,
-    borderRadius: 35,
+    borderRadius: 40,
     borderColor: "white",
     borderWidth: 2,
   },
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 5,
     color: "white",
+    marginBottom: 5,
     fontSize: 16,
   },
 });
