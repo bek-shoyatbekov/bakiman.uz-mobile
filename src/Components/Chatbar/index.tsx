@@ -13,6 +13,7 @@ import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { NavigationParamList } from "Components/Navbar/types";
+import { UserEvents } from "Events/User";
 
 interface Emoji {
   name: string;
@@ -28,7 +29,7 @@ const emojis: Emoji[] = [
   { name: "Fire", icon: "fire" },
 ];
 
-const ChatBar: React.FC = ({ onSend }: any) => {
+const ChatBar: React.FC = () => {
   const [message, setMessage] = useState("");
   const [isEmojiMenuOpen, setIsEmojiMenuOpen] = useState(false);
   const emojiMenuRef = useRef<FlatList>(null);
@@ -39,7 +40,7 @@ const ChatBar: React.FC = ({ onSend }: any) => {
     if (!message) {
       return;
     }
-    onSend(message);
+    UserEvents.emit("newMessage", message);
     setMessage("");
   };
 
