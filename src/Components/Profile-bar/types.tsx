@@ -1,5 +1,5 @@
 /** @format */
 
-export interface IProfileBar {
+export interface ProfileBar {
   username: string;
 }

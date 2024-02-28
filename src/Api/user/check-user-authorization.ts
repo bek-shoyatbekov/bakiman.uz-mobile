@@ -1,8 +1,8 @@
 import Storage from "Async-storage";
-import IUser from "Interfaces/User/User";
+import User from "Interfaces/User/User";
 
 export default async function checkUserAuthorization(): Promise<
-  IUser | boolean
+  User | boolean
 > {
   try {
     console.log("User authorization is being checked...");
@@ -10,7 +10,7 @@ export default async function checkUserAuthorization(): Promise<
 
     if (result !== null) {
       console.log("Getting user result", result);
-      return JSON.parse(result) as IUser;
+      return JSON.parse(result) as User;
     }
     return false;
   } catch (err) {

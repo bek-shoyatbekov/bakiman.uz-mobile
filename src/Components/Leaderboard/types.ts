@@ -1,7 +1,7 @@
 /** @format */
 
-import IUser from "Interfaces/User/User";
+import User from "Interfaces/User/User";
 
 export interface ILeaderboardData {
-  users: IUser[];
+  users: User[];
 }

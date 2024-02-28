@@ -9,12 +9,10 @@ import {
   SafeAreaView,
   Alert,
   View,
-  FlatList,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import Lottie from "lottie-react-native";
 
 import pickImage from "../../Utils/image/pick-image";
 import styles from "./styles";
@@ -23,13 +21,16 @@ import { NavigationParamList } from "Components/Navbar/types";
 import User from "Interfaces/User/User";
 import { UserEvents } from "Events/User";
 import Navbar from "Components/Navbar/Navbar";
+import Lottie from "lottie-react-native";
 
-const LoginScreen = () => {
+const RegisterScreen = () => {
   const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
 
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(
+    "https://drive.google.com/thumbnail?id=1TQCMNpMKwFIBkjznmUpzMfAMA8DK5azx"
+  );
 
   async function handleImagePick() {
     try {
@@ -42,73 +43,68 @@ const LoginScreen = () => {
     }
   }
 
-  async function handleLogin() {
+  async function handleRegister() {
     try {
       const result = await login({
         email,
         username,
         avatar: image,
       } as User);
-
-      Alert.alert("Logged in", "You logged in successfully");
-      UserEvents.emit("LOGIN_SUCCESSFUL", result);
-      navigation.navigate("Home");
+      navigation.navigate("ConfirmCode");
     } catch (err) {
       console.log(err);
     }
   }
 
-  function handleForgotPassword() {
-    navigation.navigate("ForgotPassword");
-  }
-
-  function handleRegister() {
-    navigation.navigate("Register");
-  }
-
   return (
     <>
-      <View style={styles.container}>
-        <Lottie
-          style={styles.animation}
-          source={{
-            uri: "https://lottie.host/5b803e4b-63c1-4474-979a-3bef394d773e/lAfammGItq.json",
-          }}
-          autoPlay={true}
-        ></Lottie>
+      <SafeAreaView
+        style={[styles.container, image ? styles.top : styles.bottom]}
+      >
+        {image && <Image source={{ uri: image }} style={styles.avatar} />}
         <TextInput
           style={styles.input}
-          placeholder="email or username"
+          placeholder="username"
           value={email}
           onChangeText={setEmail}
         />
+        <TextInput
+          style={styles.input}
+          placeholder="email"
+          value={email}
+          onChangeText={setEmail}
+        />
+
         <TextInput
           style={styles.input}
           placeholder="password"
           value={username}
           onChangeText={setUsername}
         />
-        <Pressable>
-          <Text style={styles.forgotPassword} onPress={handleForgotPassword}>
-            Forgot Password?
-          </Text>
-        </Pressable>
-        <Pressable style={styles.registerButton} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </Pressable>
 
-        <Pressable style={styles.registerBtn}>
-          <Text>
-            Don't have an account?{" "}
-            <Text style={styles.registerText} onPress={handleRegister}>
-              Register
-            </Text>
-          </Text>
+        <View style={styles.pickImageContainerBtn}>
+          <Lottie
+            style={styles.uploadAnimation}
+            source={{
+              uri: "https://lottie.host/b82f9748-ff3c-4e73-8bb7-3aaa866a997e/9Z80h4vj9S.json",
+            }}
+            autoPlay
+          ></Lottie>
+          <Pressable style={styles.pickImageBtn} onPress={handleImagePick}>
+            {image ? (
+              <Text style={styles.uploadText}>Change Avatar</Text>
+            ) : (
+              <Text style={styles.uploadText}>Choose Avatar</Text>
+            )}
+          </Pressable>
+        </View>
+        <Pressable style={styles.registerButton} onPress={handleRegister}>
+          <Text style={styles.buttonText}>Register</Text>
         </Pressable>
-      </View>
+      </SafeAreaView>
       <Navbar />
     </>
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

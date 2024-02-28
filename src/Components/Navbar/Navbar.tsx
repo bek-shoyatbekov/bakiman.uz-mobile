@@ -1,4 +1,4 @@
-import { Pressable, SafeAreaView, Text } from "react-native";
+import { Pressable, SafeAreaView, Text, View } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -7,19 +7,19 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import styles from "./styles";
 import { NavigationParamList } from "./types";
 import checkUserAuthorization from "Api/user/check-user-authorization";
-import IUser from "Interfaces/User/User";
+import User from "Interfaces/User/User";
 import { UserEvents } from "Events/User";
 
 export default function Navbar() {
   const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
 
-  const [user, setUser] = useState<IUser>();
+  const [user, setUser] = useState<User>();
 
   UserEvents.on("logout", () => {
     setUser(undefined);
   });
 
-  UserEvents.on("LOGIN_SUCCESSFUL", (user: IUser) => {
+  UserEvents.on("LOGIN_SUCCESSFUL", (user: User) => {
     setUser(user);
   });
 
@@ -27,7 +27,7 @@ export default function Navbar() {
     const getUser = async () => {
       const userData = await checkUserAuthorization();
       if (userData) {
-        setUser(userData as IUser);
+        setUser(userData as User);
       }
     };
     getUser();
@@ -37,7 +37,7 @@ export default function Navbar() {
     if (!user) {
       const result = await checkUserAuthorization();
       if (result) {
-        setUser(result as IUser);
+        setUser(result as User);
       }
     }
     navigation.navigate(location, {
@@ -47,7 +47,7 @@ export default function Navbar() {
   }
 
   return (
-    <SafeAreaView style={styles.navbar}>
+    <View style={styles.navbar}>
       <Pressable
         style={styles.navItem}
         onPress={async () => await handleNavigationChange("Home")}
@@ -81,6 +81,6 @@ export default function Navbar() {
           <Text style={styles.navText}>Login</Text>
         </Pressable>
       )}
-    </SafeAreaView>
+    </View>
   );
 }

@@ -5,59 +5,51 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  heading: {
-    fontSize: 36,
-    marginBottom: 30,
+    bottom: "15%",
   },
   input: {
     width: "80%",
-    padding: 16,
-    marginBottom: 12,
-    borderWidth: 1,
+    padding: 15,
+    marginBottom: 10,
+    borderWidth: 0.2,
     borderRadius: 5,
   },
   button: {
-    color: "black",
-    padding: 16,
+    color: "#0066FF",
+    width: "80%",
     alignItems: "center",
-    borderRadius: 8,
-    marginBottom: "2%",
+    borderRadius: 10,
   },
   registerButton: {
     backgroundColor: "#0066FF",
     padding: 16,
     alignItems: "center",
-    borderRadius: 8,
-    marginBottom: "2%",
-    width: "90%",
+    marginTop: 10,
+    borderRadius: 10,
+    width: "80%",
   },
   buttonText: {
     fontSize: 18,
     color: "#FFF",
   },
-  pickText: {
+
+  animation: {
+    width: 200,
+    height: 200,
+    borderRadius: 20,
+  },
+  forgotPassword: {
+    color: "#0066FF",
+    marginTop: 10,
+  },
+  registerText: {
+    color: "#0066FF",
+    marginBottom: 10,
     fontSize: 18,
-    color: "black",
   },
-  avatar: {
-    width: 128,
-    height: 128,
-    borderRadius: 64,
-    marginBottom: "10%",
-  },
-  logo: {
-    width: 180,
-    height: 150,
-    borderRadius: 5,
-    marginBottom: "5%",
-  },
-  avatarPlaceholder: {
-    width: 128,
-    height: 128,
-    backgroundColor: "#E1E1E1",
-    borderRadius: 64,
-  },
+  registerBtn:{
+    marginTop: 10,
+  }
 });
 
 export default styles;

@@ -11,14 +11,14 @@ import {
 } from "react-native";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
-import IUser from "Interfaces/User/User";
+import User from "Interfaces/User/User";
 import styles from "./styles";
 import Storage from "Async-storage";
 import { UserEvents } from "Events/User";
 import Navbar from "Components/Navbar/Navbar";
 
 export function ProfileScreen({ navigation }: any) {
-  const [user, setUser] = React.useState<IUser>();
+  const [user, setUser] = React.useState<User>();
   const [changed, setChanged] = React.useState<boolean>(false);
   const [username, setUsername] = React.useState("");
 
@@ -27,7 +27,7 @@ export function ProfileScreen({ navigation }: any) {
       console.log("Saving changes", username, user?.avatar);
       await Storage.setItem(
         "user",
-        JSON.stringify({ username, avatar: user?.avatar } as IUser)
+        JSON.stringify({ username, avatar: user?.avatar } as User)
       );
       setChanged(false);
     }
@@ -81,7 +81,7 @@ export function ProfileScreen({ navigation }: any) {
 
         <View style={styles.profileDetail}>
           <View style={styles.detailContent}>
-            <FontAwesome name="star" size={24} color="#1E90FF" />
+            <FontAwesome name="star" size={24} color="gold" />
             <Text style={styles.title}>Points</Text>
             <Text style={styles.count}>200</Text>
           </View>
@@ -91,7 +91,7 @@ export function ProfileScreen({ navigation }: any) {
             <Text style={styles.count}>200</Text>
           </View>
           <View style={styles.detailContent}>
-            <FontAwesome name="map-marker" size={24} color="#1E90FF" />
+            <FontAwesome name="map-marker" size={24} color="green" />
             <Text style={styles.title}>Local rank</Text>
             <Text style={styles.count}>200</Text>
           </View>

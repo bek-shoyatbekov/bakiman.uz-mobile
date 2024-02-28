@@ -1,4 +1,4 @@
-export interface IGame {
+export interface Game {
   id: string;
   title: string;
   image: string;

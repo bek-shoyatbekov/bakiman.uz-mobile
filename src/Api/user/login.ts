@@ -1,7 +1,7 @@
 import Storage from "Async-storage";
-import IUser from "Interfaces/User/User";
+import User from "Interfaces/User/User";
 
-export default async function login(user: IUser) {
+export default async function login(user: User) {
   try {
     await Storage.setItem("user", JSON.stringify(user));
     return true;

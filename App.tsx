@@ -10,6 +10,8 @@ import { GamesScreen } from "./src/Screens/Games/Games";
 import LoginScreen from "./src/Screens/Login/Login";
 
 import { GameScreen } from "Screens/Games/Game";
+import RegisterScreen from "Screens/Register/Register";
+import ConfirmCodeScreen from "Screens/Code Confirmation";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +23,11 @@ export default function App() {
         <Stack.Screen name="Games" component={GamesScreen}></Stack.Screen>
         <Stack.Screen name="Game" component={GameScreen}></Stack.Screen>
         <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+        <Stack.Screen name="Register" component={RegisterScreen}></Stack.Screen>
+        <Stack.Screen
+          name="ConfirmCode"
+          component={ConfirmCodeScreen}
+        ></Stack.Screen>
         <Stack.Screen name="Profile" component={ProfileScreen}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

@@ -4,9 +4,9 @@ import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
 
 import styles from "./styles";
-import { IGame } from "Interfaces/GameCard/Game";
+import { Game } from "Interfaces/GameCard/Game";
 
-export const GameCard = (game: IGame) => {
+export const GameCard = (game: Game) => {
   const navigation = useNavigation<any>();
   function handlePlayBtn() {
     navigation.navigate("Game", {

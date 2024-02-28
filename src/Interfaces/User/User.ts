@@ -1,6 +1,6 @@
 /** @format */
 
-export default interface IUser {
+export default interface User {
   id: string;
   email?: string;
   username: string;

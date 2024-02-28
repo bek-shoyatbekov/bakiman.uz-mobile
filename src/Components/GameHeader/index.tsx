@@ -4,7 +4,6 @@ import UserProfile from "./UserProfile";
 import IUser from "Interfaces/User/User";
 import styles from "./styles";
 import GameTimer from "./GameTimer";
-import ChatBar from "Components/Chatbar";
 
 const GameHeader = () => {
   const user1: IUser = {
@@ -32,7 +31,6 @@ const GameHeader = () => {
           <UserProfile user={user2} />
         </View>
       </View>
-      <ChatBar />
     </>
   );
 };

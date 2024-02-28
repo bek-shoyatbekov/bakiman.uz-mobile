@@ -1,11 +1,11 @@
 /** @format */
 
 import { Image, Text, SafeAreaView } from "react-native";
-import { IProfileBar } from "./types";
+import { ProfileBar as ProfileBarData } from "./types";
 import styles from "./styles";
 import React from "react";
 
-export function ProfileBar(data: IProfileBar) {
+export function ProfileBar(data: ProfileBarData) {
   return (
     <SafeAreaView style={styles.profileBar}>
       <Image
