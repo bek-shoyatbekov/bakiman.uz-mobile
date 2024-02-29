@@ -88,6 +88,17 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 5,
   },
+  loading: {
+    position: "absolute",
+    width: 200, // Adjust width as needed
+    height: 200,
+    paddingHorizontal: 150,
+    paddingVertical: 150,
+    justifyContent: "center",
+    borderRadius: 50,
+    opacity: 0.8,
+    zIndex: 1,
+  },
 });
 
 export default styles;

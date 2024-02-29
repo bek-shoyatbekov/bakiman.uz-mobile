@@ -1,9 +1,10 @@
 /** @format */
 
 export default interface User {
-  id: string;
+  id?: string;
   email?: string;
   username: string;
+  password?: string;
   avatar: string;
   badges?: string[];
   score?: number;

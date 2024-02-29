@@ -18,7 +18,7 @@ import Lottie from "lottie-react-native";
 
 import pickImage from "../../Utils/image/pick-image";
 import styles from "./styles";
-import login from "Api/user/login";
+import login from "Api/user/cache-user";
 import { NavigationParamList } from "Components/Navbar/types";
 import User from "Interfaces/User/User";
 import { UserEvents } from "Events/User";

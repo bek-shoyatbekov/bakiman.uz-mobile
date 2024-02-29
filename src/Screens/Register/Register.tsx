@@ -7,30 +7,37 @@ import {
   Pressable,
   Image,
   SafeAreaView,
-  Alert,
   View,
+  Alert,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import Lottie from "lottie-react-native";
 
 import pickImage from "../../Utils/image/pick-image";
 import styles from "./styles";
-import login from "Api/user/login";
 import { NavigationParamList } from "Components/Navbar/types";
 import User from "Interfaces/User/User";
-import { UserEvents } from "Events/User";
 import Navbar from "Components/Navbar/Navbar";
-import Lottie from "lottie-react-native";
+import cacheUser from "Api/user/cache-user";
+import EmailService from "Api/Auth/email/email.service";
+import Storage from "Async-storage";
+import { loading } from "constants/animations";
 
 const RegisterScreen = () => {
   const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
 
+  const emailService = new EmailService();
+
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [image, setImage] = useState(
     "https://drive.google.com/thumbnail?id=1TQCMNpMKwFIBkjznmUpzMfAMA8DK5azx"
   );
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function handleImagePick() {
     try {
@@ -45,41 +52,88 @@ const RegisterScreen = () => {
 
   async function handleRegister() {
     try {
-      const result = await login({
+      if (!validate()) {
+        Alert.alert("Error", errorMessage || "Validation failed");
+      }
+      setIsLoading(true);
+      const newUser: User = {
         email,
         username,
+        password,
         avatar: image,
-      } as User);
+      };
+
+      await cacheUser(newUser);
+
+      const sessionId = await emailService.checkEmail(email);
+
+      await Storage.setItem("sessionId", sessionId.toString());
+
       navigation.navigate("ConfirmCode");
     } catch (err) {
       console.log(err);
     }
   }
 
+  const validate = () => {
+    setErrorMessage(null); // Clear previous errors
+    if (!username.trim()) {
+      setErrorMessage("username is required");
+      return false;
+    }
+    if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) {
+      setErrorMessage("invalid email format");
+      return false;
+    }
+
+    if (!password.trim()) {
+      setErrorMessage("password is required");
+      return false;
+    }
+
+    if (!image) {
+      setErrorMessage("image is required");
+      return false;
+    }
+    return true;
+  };
+
   return (
     <>
       <SafeAreaView
         style={[styles.container, image ? styles.top : styles.bottom]}
       >
+        {isLoading && (
+          <Lottie
+            source={{
+              uri: loading,
+            }}
+            autoPlay
+            style={styles.loading}
+            autoSize
+            loop
+          ></Lottie>
+        )}
         {image && <Image source={{ uri: image }} style={styles.avatar} />}
         <TextInput
           style={styles.input}
           placeholder="username"
-          value={email}
-          onChangeText={setEmail}
+          value={username}
+          onChangeText={setUsername}
         />
         <TextInput
           style={styles.input}
           placeholder="email"
           value={email}
           onChangeText={setEmail}
+          keyboardType="email-address"
         />
 
         <TextInput
           style={styles.input}
           placeholder="password"
-          value={username}
-          onChangeText={setUsername}
+          value={password}
+          onChangeText={setPassword}
         />
 
         <View style={styles.pickImageContainerBtn}>

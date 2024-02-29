@@ -7,7 +7,7 @@ export default class EmailService {
       const result = await this.axios.post("/email/check", {
         email,
       });
-      if (result.status === 200) return result.data;
+      if (result.status === 201) return result.data;
       return false;
     } catch (err) {
       console.log("Error while checking email:\n", err);
@@ -21,7 +21,7 @@ export default class EmailService {
         sessionId,
         code,
       });
-      if (result.status === 200) return true;
+      if (result.status === 201) return true;
       return false;
     } catch (err) {
       console.log("Error while confirming email:\n", err);
