@@ -9,5 +9,7 @@
 > [!IMPORTANT]
 >  short showcase of my piece of art 🙂
 
-https://github.com/bek-shoyatbekov/bakiman.uz-mobile/assets/92543629/c7ba528c-967b-45b9-9c97-7f1fdec28eb7
+
+
+https://github.com/bek-shoyatbekov/bakiman.uz-mobile/assets/92543629/b8cf5444-a4cc-40dd-8751-51229f69c90a
 
