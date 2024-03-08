@@ -1,4 +1,4 @@
-import { Pressable, SafeAreaView, Text, View } from "react-native";
+import { Pressable, Text, View} from "react-native";
 import React, { useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -41,7 +41,7 @@ export default function Navbar() {
       }
     }
     navigation.navigate(location, {
-      avatar: (user as User)?.avatar,
+      avatar: (user as User)?.avatar as string,
       username: (user as User)?.username,
     });
   }

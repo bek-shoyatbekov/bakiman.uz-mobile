@@ -1,21 +1,24 @@
 import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
 
-const pickImage = async () => {
+const handlePickAvatar = async () => {
   try {
     let result = await launchImageLibraryAsync({
-      mediaTypes: MediaTypeOptions.All,
+      mediaTypes: MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [1, 1],
       quality: 1,
     });
 
     if (result.canceled) {
       return null;
     }
-    return result.assets![0].uri;
+
+    console.log("Picked image result assets", result.assets);
+    return result.assets[0]?.uri;
   } catch (error) {
     console.log("Error picking image", error);
+    return null;
   }
 };
 
-export default pickImage;
+export default handlePickAvatar;

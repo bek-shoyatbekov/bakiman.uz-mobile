@@ -63,7 +63,7 @@ export function ProfileScreen({ navigation }: any) {
               <Image
                 style={styles.avatar}
                 source={{
-                  uri: user?.avatar,
+                  uri: user?.avatar?.uri as string,
                 }}
               />
             </Pressable>

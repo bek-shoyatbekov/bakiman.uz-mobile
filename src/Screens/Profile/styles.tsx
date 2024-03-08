@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -11,8 +11,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#1E90FF",
   },
   headerContent: {
-    padding: 24,
     alignItems: "center",
+    ...Platform.select({
+      ios: {
+        paddingVertical: "10%",
+      },
+      android: {
+        paddingVertical: "10%",
+      },
+    }),
   },
 
   avatar: {

@@ -2,11 +2,13 @@
 
 import React, { useState, useRef } from "react";
 import {
-  View,
   TextInput,
   FlatList,
   Text,
   TouchableOpacity,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 
 import styles from "./styles";
@@ -54,7 +56,10 @@ const ChatBar: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
       <TouchableOpacity style={styles.exitBtn} onPress={handleExitBtn}>
         <Text style={styles.exitBtnText}>Exit</Text>
       </TouchableOpacity>
@@ -68,7 +73,7 @@ const ChatBar: React.FC = () => {
       <TouchableOpacity style={styles.sendBtn} onPress={handleSend}>
         <Text style={styles.sendBtnText}>Send</Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

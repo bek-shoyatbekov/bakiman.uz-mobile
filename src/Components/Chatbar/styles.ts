@@ -1,6 +1,6 @@
 /** @format */
 
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +9,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginTop: "auto",
-    padding: 8,
+    bottom: "10%",
+    ...Platform.select({
+      ios: {
+        paddingHorizontal: "3%",
+      },
+    }),
     backgroundColor: "#f2f2f2",
   },
   input: {

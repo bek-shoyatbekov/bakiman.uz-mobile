@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 
 const styles = StyleSheet.create({
   navbar: {
@@ -6,7 +6,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: 60,
+    ...Platform.select({
+      ios: {
+        height: 80,
+      },
+      android: {
+        height: 60,
+      },
+    }),
     backgroundColor: "#1E90FF",
     flexDirection: "row",
     justifyContent: "space-around",

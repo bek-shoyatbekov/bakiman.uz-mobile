@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import Lottie from "lottie-react-native";
 
-import pickImage from "../../Utils/image/pick-image";
+import handlePickAvatar from "../../Utils/image/handle-pick-avatar";
 import styles from "./styles";
 import { NavigationParamList } from "Components/Navbar/types";
 import User from "Interfaces/User/User";
@@ -32,23 +32,12 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [image, setImage] = useState(
+  const [avatar, setAvatar] = useState<string | any>(
     "https://drive.google.com/thumbnail?id=1TQCMNpMKwFIBkjznmUpzMfAMA8DK5azx"
   );
   const [isLoading, setIsLoading] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  async function handleImagePick() {
-    try {
-      const result = await pickImage();
-      if (result) {
-        setImage(result);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   async function handleRegister() {
     try {
@@ -60,7 +49,7 @@ const RegisterScreen = () => {
         email,
         username,
         password,
-        avatar: image,
+        avatar,
       };
 
       await cacheUser(newUser);
@@ -73,6 +62,15 @@ const RegisterScreen = () => {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  async function handlePickAvatarBtn() {
+    const newAvatarUri = await handlePickAvatar();
+    console.log("newAvatar uri", newAvatarUri);
+    if (newAvatarUri) {
+      setAvatar(newAvatarUri);
+    }
+    return;
   }
 
   const validate = () => {
@@ -91,7 +89,7 @@ const RegisterScreen = () => {
       return false;
     }
 
-    if (!image) {
+    if (!avatar) {
       setErrorMessage("image is required");
       return false;
     }
@@ -101,7 +99,7 @@ const RegisterScreen = () => {
   return (
     <>
       <SafeAreaView
-        style={[styles.container, image ? styles.top : styles.bottom]}
+        style={[styles.container, avatar ? styles.top : styles.bottom]}
       >
         {isLoading && (
           <Lottie
@@ -114,7 +112,9 @@ const RegisterScreen = () => {
             loop
           ></Lottie>
         )}
-        {image && <Image source={{ uri: image }} style={styles.avatar} />}
+        {avatar && (
+          <Image source={{ uri: avatar?.uri }} style={styles.avatar} />
+        )}
         <TextInput
           style={styles.input}
           placeholder="username"
@@ -144,8 +144,8 @@ const RegisterScreen = () => {
             }}
             autoPlay
           ></Lottie>
-          <Pressable style={styles.pickImageBtn} onPress={handleImagePick}>
-            {image ? (
+          <Pressable style={styles.pickImageBtn} onPress={handlePickAvatarBtn}>
+            {avatar ? (
               <Text style={styles.uploadText}>Change Avatar</Text>
             ) : (
               <Text style={styles.uploadText}>Choose Avatar</Text>

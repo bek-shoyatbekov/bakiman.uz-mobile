@@ -8,15 +8,18 @@ import {
   SafeAreaView,
 } from "react-native";
 import Lottie from "lottie-react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
 
 import EmailService from "Api/Auth/email/email.service";
 import styles from "./styles";
 import Storage from "Async-storage";
 import { loading } from "constants/animations";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { NavigationParamList } from "Components/Navbar/types";
-import { useNavigation } from "@react-navigation/native";
 import { UserEvents } from "Events/User";
+import User from "Interfaces/User/User";
+import { createSignupForm } from "Utils/Form/create-signup.form";
+import UserService from "Api/Auth/user/user.service";
 
 const ConfirmCodeScreen = () => {
   const navigation = useNavigation<StackNavigationProp<NavigationParamList>>();
@@ -28,6 +31,7 @@ const ConfirmCodeScreen = () => {
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
   const emailService = new EmailService();
+  const userService = new UserService();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -49,20 +53,41 @@ const ConfirmCodeScreen = () => {
   const handleConfirmCode = async () => {
     setIsLoading(true);
     setIsSubmitDisabled(true);
+
     try {
       const sessionId = await Storage.getItem("sessionId");
+      const userStr = await Storage.getItem("user");
+      const user: User = JSON.parse(userStr!);
+
       const result = await emailService.confirmEmail(
         sessionId!,
         parseInt(code)
       );
 
-      if (result) {
-        Alert.alert("Success", "Code confirmed successfully");
-        UserEvents.emit("login", true);
-        navigation.navigate("Home");
+      if (!result || !user) {
+        Alert.alert("Error", "Failed to confirm code");
+        navigation.goBack();
       }
+
+      console.log("User ", user);
+
+      const signupForm = await createSignupForm(user);
+
+      console.log("Signup form", signupForm);
+
+      const signupResult = await userService.signup(signupForm!);
+
+      if (!signupResult) {
+        navigation.goBack();
+      }
+
+      console.log("Signup result", signupResult);
+
+      Alert.alert("Success", "Code confirmed successfully");
+      UserEvents.emit("login", true);
+      navigation.navigate("Home");
     } catch (error) {
-      Alert.alert("Error", "Failed to confirm code");
+      console.log("Error while confirming code", JSON.stringify(error));
       navigation.goBack();
     }
   };
@@ -100,7 +125,6 @@ const ConfirmCodeScreen = () => {
         value={code}
         onChangeText={handleCodeChange}
         maxLength={5}
-        keyboardType="numeric"
         placeholder="Enter 5-digit code"
       />
       <Pressable onPress={handleResendCode} disabled={isResendDisabled}>
